@@ -1,9 +1,9 @@
 import os
 def main() :
 
-    file = open("C:\Users\Administrator\Desktop\click2.txt", "r")
+    file = open("C:\Users\Administrator\Desktop\\touch1.txt", "r")
     readlines = file.readlines()
-    wfile = open("C:\Users\Administrator\Desktop\\touch3.txt", "w")
+    wfile = open("C:\Users\Administrator\Desktop\\test1.txt", "w")
     count = 0;
     for line in readlines:
         split = line.replace(":", "").split(" ")
