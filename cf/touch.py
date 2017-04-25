@@ -16,12 +16,12 @@ def startTouch(x, y):
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 0 2 0") # SYN_MT_REPORT    ===
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 1 330 1") # BTN_TOUCH            DOWN
 
-def moveTouch(x,y):
+def moveTouch(x,y, id = 0):
 
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 3 58 1")  # ABS_MT_PRESSURE   ===
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 3 53 " + str(x))  # ABS_MT_POSITION_X
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 3 54 " + str(y))  # ABS_MT_POSITION_Y
-    os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 3 57 0")  # ABS_MT_TRACKING_ID
+    os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 3 57 " + str(id))  # ABS_MT_TRACKING_ID
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 0 2 0")  # SYN_MT_REPORT    ===
     os.system("adb -s "+ device +" shell sendevent  "+ eventfile +" 0 0 0")  #
 

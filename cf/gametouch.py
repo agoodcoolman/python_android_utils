@@ -1,42 +1,58 @@
 #coding=utf-8
 # 游戏虽然是横屏的,但是坐标系都是按照手机的左上角的作为(0 ,0) 原始坐标系
-global personMoveuping
-global personMovedowning
-global personMovelefting
-global personMoverighting
 
 import touch
 # 中心 中点(287, 409)  半径 150
-centerX = 291
-centerY = 409
+centerX = 284
+centerY = 438
 radius = 200
-def left():
-    global personMovelefting
+
+mouseCenterX = 284
+mouseCenterY = 938
+def left(id = 0):
     #左边 (262, 259)
-
-    if not personMovelefting:
-        personMovelefting = True
-        moveMotion(centerX, centerY, centerX, centerY - radius)
-
-def right():
-    global personMoverighting
+        moveMotion(centerX, centerY, centerX,          centerY - radius, id)
+def right(id = 0):
     #   右(287, 559)
-
-    if not personMoverighting:
-        personMoverighting = True
-        moveMotion(centerX, centerY, centerX, centerY + radius)
-def up():
+        moveMotion(centerX, centerY, centerX,          centerY + radius, id)
+def up(id = 0):
     #   上(437, 409)
-    global personMoveuping
-    if not personMoveuping:
-        personMoveuping = True
-        moveMotion(centerX, centerY, centerX + radius, centerY)
-def down():
+        moveMotion(centerX, centerY, centerX + radius, centerY, id)
+def down(id = 0):
     #   下(137, 409)
-    global personMovedowning
-    if not personMovedowning:
-        personMovedowning = True
-        moveMotion(centerX, centerY, centerX - radius, centerY)
+        moveMotion(centerX, centerY, centerX - radius, centerY, id)
+
+def upRight(id = 0):
+        moveMotion(centerX, centerY, (centerX + radius + centerX)/2, (centerY + radius +centerY)/2, id)
+def upLeft(id = 0):
+        moveMotion(centerX, centerY, (centerX + radius + centerX)/2,  (centerY - radius + centerY)/2, id)
+def downLeft(id = 0):
+        moveMotion(centerX, centerY, (centerX - radius + centerX)/2, (centerY + centerY - radius)/2, id)
+def downRight(id = 0):
+        moveMotion(centerX, centerY, (centerX - radius + centerX)/2, (centerY + centerY + radius)/2, id)
+
+
+def mouseleft(id = 0):
+    #左边 (262, 259)
+        moveMotion(mouseCenterX, mouseCenterY, mouseCenterX,          mouseCenterY - radius, id)
+def mouseright(id = 0):
+    #   右(287, 559)
+        moveMotion(mouseCenterX, mouseCenterY, mouseCenterX,          mouseCenterY + radius,  id)
+def mouseup(id = 0):
+    #   上(437, 409)
+        moveMotion(mouseCenterX, mouseCenterY, mouseCenterX + radius, mouseCenterY, id)
+def mousedown(id = 0):
+    #   下(137, 409)
+        moveMotion(mouseCenterX, mouseCenterY, mouseCenterX - radius, mouseCenterY, id)
+
+def mouseupRight(id = 0):
+        moveMotion(mouseCenterX, mouseCenterY, (mouseCenterX + radius + mouseCenterX)/2, (mouseCenterY + radius +mouseCenterY)/2, id)
+def mouseupLeft(id = 0):
+        moveMotion(mouseCenterX, mouseCenterY, (mouseCenterX + radius + mouseCenterX)/2,  (mouseCenterY - radius + mouseCenterY)/2, id)
+def mousedownLeft(id = 0):
+        moveMotion(mouseCenterX, mouseCenterY, (mouseCenterX - radius + mouseCenterX)/2, (mouseCenterY + mouseCenterY - radius)/2, id)
+def mousedownRight(id = 0):
+        moveMotion(mouseCenterX, mouseCenterY, (mouseCenterX - radius + mouseCenterX)/2, (mouseCenterY + mouseCenterY + radius)/2, id)
 
 
 
@@ -44,54 +60,35 @@ def down():
 def overTouch():
     print "overTouch"
     touch.endTouch()
-    global personMoveuping
-    global personMovedowning
-    global personMovelefting
-    global personMoverighting
 
-    personMoveuping = False
-    personMovedowning = False
-    personMovelefting = False
-    personMoverighting = False
 
-def moveMotion(startX, startY, endX, endY):
-    global personMoveuping
-    global personMovedowning
-    global personMovelefting
-    global personMoverighting
-    k = 0
-    if (startX - endX != 0):
-        k = (startY - endY) / (startX - endX)
-    b = startY - startX * k;
+def moveMotion(startX, startY, endX, endY, id = 0):
+    print "moving start", startX, startY, endX, endY
     touch.startTouch(startX, startY)
-    # print "start %d , %d", startX, startY
+    moveXpostion = 0;
+    moveYpostion = 0;
 
-    for moveX in range(radius):
-        if not (personMoveuping | personMovedowning | personMovelefting | personMoverighting):
-            print "overTouch break"
-            break;
-        if (moveX % 50 == 0):
+    for moveX in range(6):
+        moveXpostion = moveX * 20 + startX;
+        # 判断是否在取值范围内
+        # 垂直X轴
+        if (startX - endX) == 0:
+            moveXpostion  = startX
+            if startY > endY:
+                moveYpostion = startY - moveX * 20;
+            else:
+                moveYpostion = moveX * 20 + startY;
 
-            # print "ismove personMovedowning "+ str(personMovedowning)
-            # print "ismove personMoveuping "+ str(personMoveuping)
-            # print "ismove personMovelefting "+ str(personMovelefting)
-            # print "ismove personMoverighting "+ str(personMoverighting)
-            if  personMoveuping :
-                touch.moveTouch(startX + moveX, moveX*k + b)
-            elif personMovedowning :
-                touch.moveTouch(startX - moveX, moveX * k + b)
-            elif  personMoverighting:
-                touch.moveTouch(startX, startY + moveX)
-
-                # 下面的代码可以斜着走
-                # if k == 0:
-                #     touch.moveTouch((startY + moveX), startY + moveX)
-                # else:
-                #     touch.moveTouch((startY + moveX) / k  , startY + moveX)
-            elif personMovelefting :
-                touch.moveTouch(startX, startY - moveX)
-                # if k == 0:
-                #     touch.moveTouch((startY + moveX), startY - moveX)
-                # else:
-                #     touch.moveTouch((startY + moveX) / k  , startY - moveX)
+        # 垂直Y轴
+        elif (startY - endY == 0):
+            if startX > endX:
+                moveXpostion = startX - moveX * 20
+            else:
+                moveXpostion = startX + moveX * 20
+            moveYpostion = startY;
+        else:
+            moveXpostion = startX + moveX * 20
+            moveYpostion = ((moveXpostion - startX) / (endX - startX))(endY - startY) + startY
+        touch.moveTouch(moveXpostion, moveYpostion, id)
+        print "moving", moveXpostion, moveYpostion
 

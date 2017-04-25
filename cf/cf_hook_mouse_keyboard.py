@@ -3,11 +3,12 @@
 import pyHook
 import thread
 
-import click
+import gameclick
 import gametouch
 import pythoncom
 import touch
 import threading
+import touchClickEngine
 def onMouseEvent(event):
     "处理鼠标事件"
     # fobj.writelines('-' * 20 + 'MouseEvent Begin' + '-' * 20 + '\n')
@@ -24,21 +25,21 @@ def onMouseEvent(event):
 
 def onKeyboardEventDown(event):
     "处理键盘事件"
-
-    if str(event.Key) == "Lcontrol": # 左边control
-        click.click(64, 71)
-    elif str(event.Key) == "Space": # 空格
-        click.click(473, 1871)
+    if str(event.Key) == "Lcontrol":  # 左边control
+        touchClickEngine.click(64, 71)
+    elif str(event.Key) == "Space":  # 空格
+        touchClickEngine.click(473, 1871)
     elif str(event.Key) == "Q":
-        click.click(64, 1497)
+        touchClickEngine.click(64, 1497)
     elif str(event.Key) == "W":
-        gametouch.up()
+        touchClickEngine.up()
     elif str(event.Key) == "A":
-        gametouch.left()
+        touchClickEngine.left()
     elif str(event.Key) == "S":
-        gametouch.down()
+        touchClickEngine.down()
     elif str(event.Key) == "D":
-        gametouch.right()
+        touchClickEngine.right()
+
     return True
 
 def onKeyboardEventUP(event):
