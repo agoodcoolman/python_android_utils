@@ -15,7 +15,7 @@ def startTouch(x, y):
 
 def moveTouch(x,y):
 
-    os.system("adb shell sendevent /dev/input/event4 3 58 40")  # ABS_MT_PRESSURE   ===
+    os.system("adb shell sendevent /dev/input/event4 3 58 1")  # ABS_MT_PRESSURE   ===
     os.system("adb shell sendevent /dev/input/event4 3 53 " + str(x))  # ABS_MT_POSITION_X
     os.system("adb shell sendevent /dev/input/event4 3 54 " + str(y))  # ABS_MT_POSITION_Y
     os.system("adb shell sendevent /dev/input/event4 3 57 0")  # ABS_MT_TRACKING_ID
