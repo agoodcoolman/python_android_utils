@@ -3,5 +3,6 @@
 
 自己经常用的一些脚本,存储在这里
 
+[pyHook下载地址](https://sourceforge.net/projects/pyhook/?source=typ_redirect)
 
 [指令说明](https://www.kernel.org/doc/Documentation/input/event-codes.txt)

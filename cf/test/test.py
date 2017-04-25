@@ -1,7 +1,7 @@
 import os
 def main() :
 
-    file = open("C:\Users\Administrator\Desktop\\touch1.txt", "r")
+    file = open("C:\Users\Administrator\Desktop\\click.txt", "r")
     readlines = file.readlines()
     wfile = open("C:\Users\Administrator\Desktop\\test1.txt", "w")
     count = 0;
@@ -16,9 +16,9 @@ def main() :
         count += 1;
         # os.system(line.replace("\r\n", ""))
         print line
-    wfile.writelines(readlines)
-    wfile.flush();
-    wfile.close()
+    # wfile.writelines(readlines)
+    # wfile.flush();
+    # wfile.close()
     # cmdfile = open("C:\Users\Administrator\Desktop\click.txt", "r")
     # cmdline = cmdfile.readlines()
     # for line in cmdline:
