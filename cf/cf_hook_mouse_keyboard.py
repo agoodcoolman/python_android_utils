@@ -1,10 +1,13 @@
 #coding=utf-8
 # 这里监控 鼠标事件/键盘事件
 import pyHook
+import thread
+
 import click
 import gametouch
 import pythoncom
 import touch
+import threading
 def onMouseEvent(event):
     "处理鼠标事件"
     # fobj.writelines('-' * 20 + 'MouseEvent Begin' + '-' * 20 + '\n')
@@ -39,15 +42,15 @@ def onKeyboardEventDown(event):
     return True
 
 def onKeyboardEventUP(event):
-    gametouch.overTouch()
+
     if str(event.Key) == "W":
-        gametouch.overTouch
+        gametouch.overTouch()
     elif str(event.Key) == "A":
-        gametouch.overTouch
+        gametouch.overTouch()
     elif str(event.Key) == "S":
-        gametouch.overTouch
+        gametouch.overTouch()
     elif str(event.Key) == "D":
-        gametouch.overTouch
+        gametouch.overTouch()
     return True
 
 def startMotion():
@@ -55,10 +58,10 @@ def startMotion():
     touch.device = "DU2TAN14A8019404"
     # touch.device = "192.168.1.32"
     touch.eventfile = "/dev/input/event4"
-    gametouch.uping = False
-    gametouch.downing = False
-    gametouch.lefting = False
-    gametouch.righting = False
+    gametouch.personMoveuping = False
+    gametouch.personMovedowning = False
+    gametouch.personMovelefting = False
+    gametouch.personMoverighting = False
 
     # 创建hook句柄
     hm = pyHook.HookManager()
@@ -72,11 +75,11 @@ def startMotion():
     hm.MouseAll = onMouseEvent
     hm.HookMouse()
 
-
-
     # 循环获取消息
     pythoncom.PumpMessages()
 
 
 if __name__ == '__main__':
-    startMotion()
+    threading_thread = threading.Thread(target=startMotion())
+    threading_thread.setDaemon(True)
+    threading_thread.start()
