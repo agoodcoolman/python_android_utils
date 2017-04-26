@@ -9,6 +9,8 @@ import pythoncom
 import touch
 import threading
 import touchClickEngine
+
+
 def onMouseEvent(event):
     "处理鼠标事件"
     # fobj.writelines('-' * 20 + 'MouseEvent Begin' + '-' * 20 + '\n')
@@ -20,17 +22,18 @@ def onMouseEvent(event):
     # fobj.writelines("WindowName:%s\n" % str(event.WindowName))
     # fobj.writelines("Position:%s\n" % str(event.Position))
     # fobj.writelines('-' * 20 + 'MouseEvent End' + '-' * 20 + '\n')
+
     return True
 
 
 def onKeyboardEventDown(event):
     "处理键盘事件"
     if str(event.Key) == "Lcontrol":  # 左边control
-        touchClickEngine.click(64, 71)
+        touchClickEngine.squat()
     elif str(event.Key) == "Space":  # 空格
-        touchClickEngine.click(473, 1871)
+        touchClickEngine.jump()
     elif str(event.Key) == "Q":
-        touchClickEngine.click(64, 1497)
+        touchClickEngine.changeGun()
     elif str(event.Key) == "W":
         touchClickEngine.up()
     elif str(event.Key) == "A":
@@ -45,13 +48,13 @@ def onKeyboardEventDown(event):
 def onKeyboardEventUP(event):
 
     if str(event.Key) == "W":
-        gametouch.overTouch()
+        touchClickEngine.overTouch()
     elif str(event.Key) == "A":
-        gametouch.overTouch()
+        touchClickEngine.overTouch()
     elif str(event.Key) == "S":
-        gametouch.overTouch()
+        touchClickEngine.overTouch()
     elif str(event.Key) == "D":
-        gametouch.overTouch()
+        touchClickEngine.overTouch()
     return True
 
 def startMotion():
@@ -74,6 +77,7 @@ def startMotion():
 
     # 监控鼠标
     hm.MouseAll = onMouseEvent
+
     hm.HookMouse()
 
     # 循环获取消息
