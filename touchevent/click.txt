@@ -1,0 +1,46 @@
+/dev/input/event4: EV_ABS       ABS_MT_PRESSURE      00000040
+/dev/input/event4: EV_ABS       ABS_MT_POSITION_X    000002af
+/dev/input/event4: EV_ABS       ABS_MT_POSITION_Y    00000563
+/dev/input/event4: EV_ABS       ABS_MT_TRACKING_ID   00000000
+/dev/input/event4: EV_SYN       SYN_MT_REPORT        00000000
+/dev/input/event4: EV_KEY       BTN_TOUCH            DOWN
+/dev/input/event4: EV_SYN       SYN_REPORT           00000000
+/dev/input/event4: EV_SYN       SYN_MT_REPORT        00000000
+/dev/input/event4: EV_KEY       BTN_TOUCH            UP
+/dev/input/event4: EV_SYN       SYN_REPORT           00000000
+
+上面的命令：adb shell getevent -l
+
+/dev/input/event4: 0003 003a 00000040
+/dev/input/event4: 0003 0035 000002a4
+/dev/input/event4: 0003 0036 000005cf
+/dev/input/event4: 0003 0039 00000000
+/dev/input/event4: 0000 0002 00000000
+/dev/input/event4: 0001 014a 00000001
+/dev/input/event4: 0000 0000 00000000
+/dev/input/event4: 0000 0002 00000000
+/dev/input/event4: 0001 014a 00000000
+/dev/input/event4: 0000 0000 00000000
+
+上面的命令：adb shell getevent
+
+// 下面是点击的操作，使用10进制
+adb shell sendevent /dev/input/event4 3 58 64
+
+adb shell sendevent /dev/input/event4 3 53 676
+
+adb shell sendevent /dev/input/event4 3 54 1487
+
+adb shell sendevent /dev/input/event4 3 57 0
+
+adb shell sendevent /dev/input/event4 0 2 0
+
+adb shell sendevent /dev/input/event4 1 330 1
+
+adb shell sendevent /dev/input/event4 0 0 0
+
+adb shell sendevent /dev/input/event4 0 2 0
+
+adb shell sendevent /dev/input/event4 1 330 0
+
+adb shell sendevent /dev/input/event4 0 0 0

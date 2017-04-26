@@ -1,9 +1,13 @@
 import os
 def main() :
 
+<<<<<<< Updated upstream
     file = open("C:\Users\Administrator\Desktop\\click.txt", "r")
+=======
+    file = open("/home/jin/PycharmProjects/python_android_utils/touchevent/click.txt", "r")
+>>>>>>> Stashed changes
     readlines = file.readlines()
-    wfile = open("C:\Users\Administrator\Desktop\\test1.txt", "w")
+    # wfile = open("C:\Users\Administrator\Desktop\\test1.txt", "w")
     count = 0;
     for line in readlines:
         split = line.replace(":", "").split(" ")
