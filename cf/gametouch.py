@@ -10,16 +10,15 @@ radius = 200
 mouseCenterX = 284
 mouseCenterY = 938
 def left(id = 0):
-    #左边 (262, 259)
+
         moveMotion(centerX, centerY, centerX,          centerY - radius, id)
 def right(id = 0):
-    #   右(287, 559)
+
         moveMotion(centerX, centerY, centerX,          centerY + radius, id)
 def up(id = 0):
-    #   上(437, 409)
+
         moveMotion(centerX, centerY, centerX + radius, centerY, id)
 def down(id = 0):
-    #   下(137, 409)
         moveMotion(centerX, centerY, centerX - radius, centerY, id)
 
 def upRight(id = 0):
